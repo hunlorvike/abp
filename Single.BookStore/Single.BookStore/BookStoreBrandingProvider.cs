@@ -1,19 +1,16 @@
-using Microsoft.Extensions.Localization;
+﻿using Microsoft.Extensions.Localization;
+
 using Single.BookStore.Localization;
+
 using Volo.Abp.DependencyInjection;
 using Volo.Abp.Ui.Branding;
 
 namespace Single.BookStore;
 
 [Dependency(ReplaceServices = true)]
-public class BookStoreBrandingProvider : DefaultBrandingProvider
+public class BookStoreBrandingProvider(IStringLocalizer<BookStoreResource> localizer) : DefaultBrandingProvider
 {
-    private IStringLocalizer<BookStoreResource> _localizer;
-
-    public BookStoreBrandingProvider(IStringLocalizer<BookStoreResource> localizer)
-    {
-        _localizer = localizer;
-    }
+    private readonly IStringLocalizer<BookStoreResource> _localizer = localizer;
 
     public override string AppName => _localizer["AppName"];
 }

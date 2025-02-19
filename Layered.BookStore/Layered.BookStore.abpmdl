@@ -1,0 +1,105 @@
+{
+  "template": "app",
+  "imports": {
+    "Volo.Abp.LeptonXLiteTheme": {
+      "version": "4.0.5",
+      "isInstalled": true
+    },
+    "Volo.Abp.Account": {
+      "version": "9.0.4",
+      "isInstalled": true
+    },
+    "Volo.Abp.OpenIddict": {
+      "version": "9.0.4",
+      "isInstalled": true
+    },
+    "Volo.Abp.Identity": {
+      "version": "9.0.4",
+      "isInstalled": true
+    },
+    "Volo.Abp.TenantManagement": {
+      "version": "9.0.4",
+      "isInstalled": true
+    },
+    "Volo.Abp.SettingManagement": {
+      "version": "9.0.4",
+      "isInstalled": true
+    },
+    "Volo.Abp.PermissionManagement": {
+      "version": "9.0.4",
+      "isInstalled": true
+    },
+    "Volo.Abp.FeatureManagement": {
+      "version": "9.0.4",
+      "isInstalled": true
+    }
+  },
+  "folders": {
+    "items": {
+      "src": {},
+      "test": {}
+    }
+  },
+  "packages": {
+    "Layered.BookStore.Application": {
+      "path": "src/Layered.BookStore.Application/Layered.BookStore.Application.abppkg",
+      "folder": "src"
+    },
+    "Layered.BookStore.Application.Tests": {
+      "path": "test/Layered.BookStore.Application.Tests/Layered.BookStore.Application.Tests.abppkg",
+      "folder": "test"
+    },
+    "Layered.BookStore.Domain.Shared": {
+      "path": "src/Layered.BookStore.Domain.Shared/Layered.BookStore.Domain.Shared.abppkg",
+      "folder": "src"
+    },
+    "Layered.BookStore.Application.Contracts": {
+      "path": "src/Layered.BookStore.Application.Contracts/Layered.BookStore.Application.Contracts.abppkg",
+      "folder": "src"
+    },
+    "Layered.BookStore.HttpApi": {
+      "path": "src/Layered.BookStore.HttpApi/Layered.BookStore.HttpApi.abppkg",
+      "folder": "src"
+    },
+    "Layered.BookStore.HttpApi.Client": {
+      "path": "src/Layered.BookStore.HttpApi.Client/Layered.BookStore.HttpApi.Client.abppkg",
+      "folder": "src"
+    },
+    "Layered.BookStore.Web": {
+      "path": "src/Layered.BookStore.Web/Layered.BookStore.Web.abppkg",
+      "folder": "src"
+    },
+    "Layered.BookStore.Web.Tests": {
+      "path": "test/Layered.BookStore.Web.Tests/Layered.BookStore.Web.Tests.abppkg",
+      "folder": "test"
+    },
+    "Layered.BookStore.EntityFrameworkCore.Tests": {
+      "path": "test/Layered.BookStore.EntityFrameworkCore.Tests/Layered.BookStore.EntityFrameworkCore.Tests.abppkg",
+      "folder": "test"
+    },
+    "Layered.BookStore.EntityFrameworkCore": {
+      "path": "src/Layered.BookStore.EntityFrameworkCore/Layered.BookStore.EntityFrameworkCore.abppkg",
+      "folder": "src"
+    },
+    "Layered.BookStore.TestBase": {
+      "path": "test/Layered.BookStore.TestBase/Layered.BookStore.TestBase.abppkg",
+      "folder": "test"
+    },
+    "Layered.BookStore.Domain.Tests": {
+      "path": "test/Layered.BookStore.Domain.Tests/Layered.BookStore.Domain.Tests.abppkg",
+      "folder": "test"
+    },
+    "Layered.BookStore.HttpApi.Client.ConsoleTestApp": {
+      "path": "test/Layered.BookStore.HttpApi.Client.ConsoleTestApp/Layered.BookStore.HttpApi.Client.ConsoleTestApp.abppkg",
+      "folder": "test"
+    },
+    "Layered.BookStore.DbMigrator": {
+      "path": "src/Layered.BookStore.DbMigrator/Layered.BookStore.DbMigrator.abppkg",
+      "folder": "src"
+    },
+    "Layered.BookStore.Domain": {
+      "path": "src/Layered.BookStore.Domain/Layered.BookStore.Domain.abppkg",
+      "folder": "src"
+    }
+  }
+}

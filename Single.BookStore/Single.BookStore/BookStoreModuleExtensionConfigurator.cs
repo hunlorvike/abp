@@ -1,4 +1,5 @@
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
+
 using Volo.Abp.Identity;
 using Volo.Abp.ObjectExtending;
 using Volo.Abp.Threading;
@@ -7,7 +8,7 @@ namespace Single.BookStore;
 
 public static class BookStoreModuleExtensionConfigurator
 {
-    private static readonly OneTimeRunner OneTimeRunner = new OneTimeRunner();
+    private static readonly OneTimeRunner OneTimeRunner = new();
 
     public static void Configure()
     {

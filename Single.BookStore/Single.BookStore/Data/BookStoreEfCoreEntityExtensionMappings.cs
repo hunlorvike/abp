@@ -1,10 +1,10 @@
-using Volo.Abp.Threading;
+﻿using Volo.Abp.Threading;
 
 namespace Single.BookStore.Data;
 
 public static class BookStoreEfCoreEntityExtensionMappings
 {
-    private static readonly OneTimeRunner OneTimeRunner = new OneTimeRunner();
+    private static readonly OneTimeRunner OneTimeRunner = new();
 
     public static void Configure()
     {

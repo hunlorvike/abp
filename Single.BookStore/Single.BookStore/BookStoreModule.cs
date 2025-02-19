@@ -1,63 +1,66 @@
 ﻿using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Extensions.DependencyInjection;
+using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.OpenApi.Models;
-using Microsoft.AspNetCore.Mvc.RazorPages;
+
+using OpenIddict.Validation.AspNetCore;
+
 using Single.BookStore.Data;
 using Single.BookStore.Localization;
 using Single.BookStore.Menus;
 using Single.BookStore.Permissions;
-using OpenIddict.Validation.AspNetCore;
+
 using Volo.Abp;
 using Volo.Abp.Account;
 using Volo.Abp.Account.Web;
 using Volo.Abp.AspNetCore.Mvc;
 using Volo.Abp.AspNetCore.Mvc.Localization;
 using Volo.Abp.AspNetCore.Mvc.UI.Bundling;
+using Volo.Abp.AspNetCore.Mvc.UI.Theme.LeptonXLite;
+using Volo.Abp.AspNetCore.Mvc.UI.Theme.LeptonXLite.Bundling;
 using Volo.Abp.AspNetCore.Mvc.UI.Theme.Shared;
 using Volo.Abp.AspNetCore.Mvc.UI.Theme.Shared.Toolbars;
 using Volo.Abp.AspNetCore.Serilog;
+using Volo.Abp.AuditLogging.EntityFrameworkCore;
 using Volo.Abp.Autofac;
 using Volo.Abp.AutoMapper;
+using Volo.Abp.BackgroundJobs.EntityFrameworkCore;
+using Volo.Abp.BlobStoring.Database.EntityFrameworkCore;
 using Volo.Abp.Caching;
-using Volo.Abp.FeatureManagement;
-using Volo.Abp.Identity;
-using Volo.Abp.Identity.Web;
-using Volo.Abp.TenantManagement;
-using Volo.Abp.TenantManagement.Web;
 using Volo.Abp.Emailing;
+using Volo.Abp.EntityFrameworkCore;
+using Volo.Abp.EntityFrameworkCore.MySQL;
+using Volo.Abp.FeatureManagement;
+using Volo.Abp.FeatureManagement.EntityFrameworkCore;
+using Volo.Abp.Identity;
+using Volo.Abp.Identity.EntityFrameworkCore;
+using Volo.Abp.Identity.Web;
 using Volo.Abp.Localization;
 using Volo.Abp.Localization.ExceptionHandling;
 using Volo.Abp.Modularity;
 using Volo.Abp.MultiTenancy;
+using Volo.Abp.OpenIddict;
+using Volo.Abp.OpenIddict.EntityFrameworkCore;
 using Volo.Abp.PermissionManagement;
+using Volo.Abp.PermissionManagement.EntityFrameworkCore;
 using Volo.Abp.PermissionManagement.HttpApi;
 using Volo.Abp.PermissionManagement.Identity;
+using Volo.Abp.PermissionManagement.OpenIddict;
 using Volo.Abp.PermissionManagement.Web;
+using Volo.Abp.Security.Claims;
 using Volo.Abp.SettingManagement;
-using Volo.Abp.AspNetCore.Mvc.UI.Theme.LeptonXLite;
-using Volo.Abp.AspNetCore.Mvc.UI.Theme.LeptonXLite.Bundling;
+using Volo.Abp.SettingManagement.EntityFrameworkCore;
 using Volo.Abp.SettingManagement.Web;
+using Volo.Abp.Studio.Client.AspNetCore;
 using Volo.Abp.Swashbuckle;
+using Volo.Abp.TenantManagement;
+using Volo.Abp.TenantManagement.EntityFrameworkCore;
+using Volo.Abp.TenantManagement.Web;
 using Volo.Abp.UI.Navigation;
 using Volo.Abp.UI.Navigation.Urls;
 using Volo.Abp.Validation.Localization;
 using Volo.Abp.VirtualFileSystem;
-using Volo.Abp.OpenIddict;
-using Volo.Abp.PermissionManagement.OpenIddict;
-using Volo.Abp.Security.Claims;
-using Volo.Abp.EntityFrameworkCore;
-using Volo.Abp.TenantManagement.EntityFrameworkCore;
-using Volo.Abp.OpenIddict.EntityFrameworkCore;
-using Volo.Abp.SettingManagement.EntityFrameworkCore;
-using Volo.Abp.PermissionManagement.EntityFrameworkCore;
-using Volo.Abp.AuditLogging.EntityFrameworkCore;
-using Volo.Abp.BlobStoring.Database.EntityFrameworkCore;
-using Volo.Abp.BackgroundJobs.EntityFrameworkCore;
-using Volo.Abp.Identity.EntityFrameworkCore;
-using Volo.Abp.FeatureManagement.EntityFrameworkCore;
-using Volo.Abp.EntityFrameworkCore.MySQL;
-using Volo.Abp.Studio.Client.AspNetCore;
 
 namespace Single.BookStore;
 
@@ -78,7 +81,7 @@ namespace Single.BookStore;
     typeof(AbpAccountWebOpenIddictModule),
     typeof(AbpAccountHttpApiModule),
     typeof(AbpAccountApplicationModule),
-        
+
     // Tenant Management module packages
     typeof(AbpTenantManagementWebModule),
     typeof(AbpTenantManagementHttpApiModule),
@@ -186,7 +189,7 @@ public class BookStoreModule : AbpModule
         ConfigureEfCore(context);
     }
 
-    private void ConfigureAuthentication(ServiceConfigurationContext context)
+    private static void ConfigureAuthentication(ServiceConfigurationContext context)
     {
         context.Services.ForwardIdentityAuthenticationForBearer(OpenIddictValidationAspNetCoreDefaults.AuthenticationScheme);
         context.Services.Configure<AbpClaimsPrincipalFactoryOptions>(options =>
@@ -286,7 +289,7 @@ public class BookStoreModule : AbpModule
         });
     }
 
-    private void ConfigureSwagger(IServiceCollection services)
+    private static void ConfigureSwagger(IServiceCollection services)
     {
         services.AddAbpSwaggerGen(
             options =>
@@ -324,7 +327,7 @@ public class BookStoreModule : AbpModule
             options.Contributors.Add(new BookStoreToolbarContributor());
         });
     }
-    
+
     private void ConfigureEfCore(ServiceConfigurationContext context)
     {
         context.Services.AddAbpDbContext<BookStoreDbContext>(options =>
@@ -346,7 +349,7 @@ public class BookStoreModule : AbpModule
                 });
             });
         });
-        
+
     }
 
 

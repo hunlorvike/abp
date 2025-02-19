@@ -1,10 +1,11 @@
+﻿using Single.BookStore.Localization;
 using Single.BookStore.Permissions;
-using Single.BookStore.Localization;
+
 using Volo.Abp.Authorization.Permissions;
 using Volo.Abp.Identity.Web.Navigation;
 using Volo.Abp.SettingManagement.Web.Navigation;
-using Volo.Abp.UI.Navigation;
 using Volo.Abp.TenantManagement.Web.Navigation;
+using Volo.Abp.UI.Navigation;
 
 namespace Single.BookStore.Menus;
 
@@ -43,7 +44,7 @@ public class BookStoreMenuContributor : IMenuContributor
 
         //Administration->Settings
         administration.SetSubItemOrder(SettingManagementMenuNames.GroupName, 7);
-        
+
         return Task.CompletedTask;
     }
 }

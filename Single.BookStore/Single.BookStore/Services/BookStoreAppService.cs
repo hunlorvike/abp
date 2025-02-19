@@ -1,5 +1,6 @@
+﻿using Single.BookStore.Localization;
+
 using Volo.Abp.Application.Services;
-using Single.BookStore.Localization;
 
 namespace Single.BookStore.Services;
 

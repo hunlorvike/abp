@@ -1,7 +1,10 @@
-using System;
-using Single.BookStore.Data;
+﻿using System;
+
 using Serilog;
 using Serilog.Events;
+
+using Single.BookStore.Data;
+
 using Volo.Abp.Data;
 
 namespace Single.BookStore;
@@ -32,11 +35,11 @@ public class Program
                     else
                     {
                         loggerConfiguration
-                        #if DEBUG
+#if DEBUG
                             .MinimumLevel.Debug()
-                        #else
+#else
                             .MinimumLevel.Information()
-                        #endif
+#endif
                             .MinimumLevel.Override("Microsoft", LogEventLevel.Information)
                             .MinimumLevel.Override("Microsoft.EntityFrameworkCore", LogEventLevel.Warning)
                             .Enrich.FromLogContext()

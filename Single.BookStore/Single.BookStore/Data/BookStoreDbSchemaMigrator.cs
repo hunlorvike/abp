@@ -1,21 +1,17 @@
-﻿using Volo.Abp.DependencyInjection;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
+
+using Volo.Abp.DependencyInjection;
 
 namespace Single.BookStore.Data;
 
-public class BookStoreDbSchemaMigrator : ITransientDependency
+public class BookStoreDbSchemaMigrator(
+    IServiceProvider serviceProvider) : ITransientDependency
 {
-    private readonly IServiceProvider _serviceProvider;
-
-    public BookStoreDbSchemaMigrator(
-        IServiceProvider serviceProvider)
-    {
-        _serviceProvider = serviceProvider;
-    }
+    private readonly IServiceProvider _serviceProvider = serviceProvider;
 
     public async Task MigrateAsync()
     {
-        
+
         /* We intentionally resolving the BookStoreDbContext
          * from IServiceProvider (instead of directly injecting it)
          * to properly get the connection string of the current tenant in the

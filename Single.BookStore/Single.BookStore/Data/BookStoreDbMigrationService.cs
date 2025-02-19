@@ -1,6 +1,8 @@
 ﻿using System.Diagnostics;
 using System.Runtime.InteropServices;
+
 using Microsoft.Extensions.Logging.Abstractions;
+
 using Volo.Abp.Data;
 using Volo.Abp.DependencyInjection;
 using Volo.Abp.Identity;
@@ -9,28 +11,18 @@ using Volo.Abp.TenantManagement;
 
 namespace Single.BookStore.Data;
 
-public class BookStoreDbMigrationService : ITransientDependency
+public class BookStoreDbMigrationService(
+    IDataSeeder dataSeeder,
+    BookStoreDbSchemaMigrator dbSchemaMigrator,
+    ITenantRepository tenantRepository,
+    ICurrentTenant currentTenant) : ITransientDependency
 {
-    public ILogger<BookStoreDbMigrationService> Logger { get; set; }
+    public ILogger<BookStoreDbMigrationService> Logger { get; set; } = NullLogger<BookStoreDbMigrationService>.Instance;
 
-    private readonly IDataSeeder _dataSeeder;
-    private readonly BookStoreDbSchemaMigrator _dbSchemaMigrator;
-    private readonly ITenantRepository _tenantRepository;
-    private readonly ICurrentTenant _currentTenant;
-
-    public BookStoreDbMigrationService(
-        IDataSeeder dataSeeder,
-        BookStoreDbSchemaMigrator dbSchemaMigrator,
-        ITenantRepository tenantRepository,
-        ICurrentTenant currentTenant)
-    {
-        _dataSeeder = dataSeeder;
-        _dbSchemaMigrator = dbSchemaMigrator;
-        _tenantRepository = tenantRepository;
-        _currentTenant = currentTenant;
-
-        Logger = NullLogger<BookStoreDbMigrationService>.Instance;
-    }
+    private readonly IDataSeeder _dataSeeder = dataSeeder;
+    private readonly BookStoreDbSchemaMigrator _dbSchemaMigrator = dbSchemaMigrator;
+    private readonly ITenantRepository _tenantRepository = tenantRepository;
+    private readonly ICurrentTenant _currentTenant = currentTenant;
 
     public async Task MigrateAsync()
     {
@@ -55,7 +47,7 @@ public class BookStoreDbMigrationService : ITransientDependency
         {
             using (_currentTenant.Change(tenant.Id))
             {
-                if (tenant.ConnectionStrings.Any())
+                if (tenant.ConnectionStrings.Count != 0)
                 {
                     var tenantConnectionStrings = tenant.ConnectionStrings
                         .Select(x => x.Value)
@@ -83,14 +75,14 @@ public class BookStoreDbMigrationService : ITransientDependency
     {
         Logger.LogInformation(
             $"Migrating schema for {(tenant == null ? "host" : tenant.Name + " tenant")} database...");
-        
+
         await _dbSchemaMigrator.MigrateAsync();
     }
 
     private async Task SeedDataAsync(Tenant? tenant = null)
     {
         Logger.LogInformation($"Executing {(tenant == null ? "host" : tenant.Name + " tenant")} database seed...");
-        
+
         await _dataSeeder.SeedAsync(new DataSeedContext(tenant?.Id)
             .WithProperty(IdentityDataSeedContributor.AdminEmailPropertyName, IdentityDataSeedContributor.AdminEmailDefaultValue)
             .WithProperty(IdentityDataSeedContributor.AdminPasswordPropertyName, IdentityDataSeedContributor.AdminPasswordDefaultValue)
@@ -130,12 +122,12 @@ public class BookStoreDbMigrationService : ITransientDependency
         }
     }
 
-    private bool DbMigrationsProjectExists()
+    private static bool DbMigrationsProjectExists()
     {
         return Directory.Exists(GetEntityFrameworkCoreProjectFolderPath());
     }
 
-    private bool MigrationsFolderExists()
+    private static bool MigrationsFolderExists()
     {
         var dbMigrationsProjectFolder = GetEntityFrameworkCoreProjectFolderPath();
 
@@ -174,19 +166,13 @@ public class BookStoreDbMigrationService : ITransientDependency
         }
     }
 
-    private string GetEntityFrameworkCoreProjectFolderPath()
+    private static string GetEntityFrameworkCoreProjectFolderPath()
     {
-        var slnDirectoryPath = GetSolutionDirectoryPath();
-
-        if (slnDirectoryPath == null)
-        {
-            throw new Exception("Solution folder not found!");
-        }
-
+        var slnDirectoryPath = GetSolutionDirectoryPath() ?? throw new Exception("Solution folder not found!");
         return Path.Combine(slnDirectoryPath, "Single.BookStore");
     }
 
-    private string GetSolutionDirectoryPath()
+    private static string GetSolutionDirectoryPath()
     {
         var currentDirectory = new DirectoryInfo(Directory.GetCurrentDirectory());
 

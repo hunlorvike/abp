@@ -1,4 +1,4 @@
-namespace Single.BookStore.Permissions;
+﻿namespace Single.BookStore.Permissions;
 
 public static class BookStorePermissions
 {

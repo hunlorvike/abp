@@ -1,4 +1,5 @@
 ﻿using System;
+
 using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
@@ -1050,27 +1051,27 @@ namespace Single.BookStore.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_AbpAuditLogActions_TenantId_ServiceName_MethodName_Execution~",
                 table: "AbpAuditLogActions",
-                columns: new[] { "TenantId", "ServiceName", "MethodName", "ExecutionTime" });
+                columns: ["TenantId", "ServiceName", "MethodName", "ExecutionTime"]);
 
             migrationBuilder.CreateIndex(
                 name: "IX_AbpAuditLogs_TenantId_ExecutionTime",
                 table: "AbpAuditLogs",
-                columns: new[] { "TenantId", "ExecutionTime" });
+                columns: ["TenantId", "ExecutionTime"]);
 
             migrationBuilder.CreateIndex(
                 name: "IX_AbpAuditLogs_TenantId_UserId_ExecutionTime",
                 table: "AbpAuditLogs",
-                columns: new[] { "TenantId", "UserId", "ExecutionTime" });
+                columns: ["TenantId", "UserId", "ExecutionTime"]);
 
             migrationBuilder.CreateIndex(
                 name: "IX_AbpBackgroundJobs_IsAbandoned_NextTryTime",
                 table: "AbpBackgroundJobs",
-                columns: new[] { "IsAbandoned", "NextTryTime" });
+                columns: ["IsAbandoned", "NextTryTime"]);
 
             migrationBuilder.CreateIndex(
                 name: "IX_AbpBlobContainers_TenantId_Name",
                 table: "AbpBlobContainers",
-                columns: new[] { "TenantId", "Name" });
+                columns: ["TenantId", "Name"]);
 
             migrationBuilder.CreateIndex(
                 name: "IX_AbpBlobs_ContainerId",
@@ -1080,7 +1081,7 @@ namespace Single.BookStore.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_AbpBlobs_TenantId_ContainerId_Name",
                 table: "AbpBlobs",
-                columns: new[] { "TenantId", "ContainerId", "Name" });
+                columns: ["TenantId", "ContainerId", "Name"]);
 
             migrationBuilder.CreateIndex(
                 name: "IX_AbpEntityChanges_AuditLogId",
@@ -1090,7 +1091,7 @@ namespace Single.BookStore.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_AbpEntityChanges_TenantId_EntityTypeFullName_EntityId",
                 table: "AbpEntityChanges",
-                columns: new[] { "TenantId", "EntityTypeFullName", "EntityId" });
+                columns: ["TenantId", "EntityTypeFullName", "EntityId"]);
 
             migrationBuilder.CreateIndex(
                 name: "IX_AbpEntityPropertyChanges_EntityChangeId",
@@ -1117,19 +1118,19 @@ namespace Single.BookStore.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_AbpFeatureValues_Name_ProviderName_ProviderKey",
                 table: "AbpFeatureValues",
-                columns: new[] { "Name", "ProviderName", "ProviderKey" },
+                columns: ["Name", "ProviderName", "ProviderKey"],
                 unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_AbpLinkUsers_SourceUserId_SourceTenantId_TargetUserId_Target~",
                 table: "AbpLinkUsers",
-                columns: new[] { "SourceUserId", "SourceTenantId", "TargetUserId", "TargetTenantId" },
+                columns: ["SourceUserId", "SourceTenantId", "TargetUserId", "TargetTenantId"],
                 unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_AbpOrganizationUnitRoles_RoleId_OrganizationUnitId",
                 table: "AbpOrganizationUnitRoles",
-                columns: new[] { "RoleId", "OrganizationUnitId" });
+                columns: ["RoleId", "OrganizationUnitId"]);
 
             migrationBuilder.CreateIndex(
                 name: "IX_AbpOrganizationUnits_Code",
@@ -1144,7 +1145,7 @@ namespace Single.BookStore.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_AbpPermissionGrants_TenantId_Name_ProviderName_ProviderKey",
                 table: "AbpPermissionGrants",
-                columns: new[] { "TenantId", "Name", "ProviderName", "ProviderKey" },
+                columns: ["TenantId", "Name", "ProviderName", "ProviderKey"],
                 unique: true);
 
             migrationBuilder.CreateIndex(
@@ -1177,22 +1178,22 @@ namespace Single.BookStore.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_AbpSecurityLogs_TenantId_Action",
                 table: "AbpSecurityLogs",
-                columns: new[] { "TenantId", "Action" });
+                columns: ["TenantId", "Action"]);
 
             migrationBuilder.CreateIndex(
                 name: "IX_AbpSecurityLogs_TenantId_ApplicationName",
                 table: "AbpSecurityLogs",
-                columns: new[] { "TenantId", "ApplicationName" });
+                columns: ["TenantId", "ApplicationName"]);
 
             migrationBuilder.CreateIndex(
                 name: "IX_AbpSecurityLogs_TenantId_Identity",
                 table: "AbpSecurityLogs",
-                columns: new[] { "TenantId", "Identity" });
+                columns: ["TenantId", "Identity"]);
 
             migrationBuilder.CreateIndex(
                 name: "IX_AbpSecurityLogs_TenantId_UserId",
                 table: "AbpSecurityLogs",
-                columns: new[] { "TenantId", "UserId" });
+                columns: ["TenantId", "UserId"]);
 
             migrationBuilder.CreateIndex(
                 name: "IX_AbpSessions_Device",
@@ -1207,7 +1208,7 @@ namespace Single.BookStore.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_AbpSessions_TenantId_UserId",
                 table: "AbpSessions",
-                columns: new[] { "TenantId", "UserId" });
+                columns: ["TenantId", "UserId"]);
 
             migrationBuilder.CreateIndex(
                 name: "IX_AbpSettingDefinitions_Name",
@@ -1218,7 +1219,7 @@ namespace Single.BookStore.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_AbpSettings_Name_ProviderName_ProviderKey",
                 table: "AbpSettings",
-                columns: new[] { "Name", "ProviderName", "ProviderKey" },
+                columns: ["Name", "ProviderName", "ProviderKey"],
                 unique: true);
 
             migrationBuilder.CreateIndex(
@@ -1239,17 +1240,17 @@ namespace Single.BookStore.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_AbpUserLogins_LoginProvider_ProviderKey",
                 table: "AbpUserLogins",
-                columns: new[] { "LoginProvider", "ProviderKey" });
+                columns: ["LoginProvider", "ProviderKey"]);
 
             migrationBuilder.CreateIndex(
                 name: "IX_AbpUserOrganizationUnits_UserId_OrganizationUnitId",
                 table: "AbpUserOrganizationUnits",
-                columns: new[] { "UserId", "OrganizationUnitId" });
+                columns: ["UserId", "OrganizationUnitId"]);
 
             migrationBuilder.CreateIndex(
                 name: "IX_AbpUserRoles_RoleId_UserId",
                 table: "AbpUserRoles",
-                columns: new[] { "RoleId", "UserId" });
+                columns: ["RoleId", "UserId"]);
 
             migrationBuilder.CreateIndex(
                 name: "IX_AbpUsers_Email",
@@ -1279,7 +1280,7 @@ namespace Single.BookStore.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_OpenIddictAuthorizations_ApplicationId_Status_Subject_Type",
                 table: "OpenIddictAuthorizations",
-                columns: new[] { "ApplicationId", "Status", "Subject", "Type" });
+                columns: ["ApplicationId", "Status", "Subject", "Type"]);
 
             migrationBuilder.CreateIndex(
                 name: "IX_OpenIddictScopes_Name",
@@ -1289,7 +1290,7 @@ namespace Single.BookStore.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_OpenIddictTokens_ApplicationId_Status_Subject_Type",
                 table: "OpenIddictTokens",
-                columns: new[] { "ApplicationId", "Status", "Subject", "Type" });
+                columns: ["ApplicationId", "Status", "Subject", "Type"]);
 
             migrationBuilder.CreateIndex(
                 name: "IX_OpenIddictTokens_AuthorizationId",

@@ -1,9 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Volo.Abp.EntityFrameworkCore;
-using Volo.Abp.EntityFrameworkCore.Modeling;
+
 using Volo.Abp.AuditLogging.EntityFrameworkCore;
 using Volo.Abp.BackgroundJobs.EntityFrameworkCore;
 using Volo.Abp.BlobStoring.Database.EntityFrameworkCore;
+using Volo.Abp.EntityFrameworkCore;
+using Volo.Abp.EntityFrameworkCore.Modeling;
 using Volo.Abp.FeatureManagement.EntityFrameworkCore;
 using Volo.Abp.Identity.EntityFrameworkCore;
 using Volo.Abp.OpenIddict.EntityFrameworkCore;
@@ -13,16 +14,11 @@ using Volo.Abp.TenantManagement.EntityFrameworkCore;
 
 namespace Single.BookStore.Data;
 
-public class BookStoreDbContext : AbpDbContext<BookStoreDbContext>
+public class BookStoreDbContext(DbContextOptions<BookStoreDbContext> options) : AbpDbContext<BookStoreDbContext>(options)
 {
-    
+
     public const string DbTablePrefix = "App";
     public const string DbSchema = null;
-
-    public BookStoreDbContext(DbContextOptions<BookStoreDbContext> options)
-        : base(options)
-    {
-    }
 
     protected override void OnModelCreating(ModelBuilder builder)
     {
@@ -39,7 +35,7 @@ public class BookStoreDbContext : AbpDbContext<BookStoreDbContext>
         builder.ConfigureIdentity();
         builder.ConfigureOpenIddict();
         builder.ConfigureTenantManagement();
-        
+
         /* Configure your own entities here */
     }
 }

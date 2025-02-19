@@ -1,0 +1,13 @@
+﻿{
+  "applications": {
+    "Layered.BookStore.Web": {
+      "type": "dotnet-project",
+      "launchUrl": "https://localhost:44333",
+      "path": "../../../src/Layered.BookStore.Web/Layered.BookStore.Web.csproj",
+      "kubernetesService": ".*-web$",
+      "execution": {
+        "order": 2
+      }
+    }
+  }
+}

@@ -5,5 +5,5 @@ namespace Single.BookStore.Localization;
 [LocalizationResourceName("BookStore")]
 public class BookStoreResource
 {
-    
+
 }

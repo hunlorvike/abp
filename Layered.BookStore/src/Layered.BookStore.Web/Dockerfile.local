@@ -1,0 +1,13 @@
+FROM mcr.microsoft.com/dotnet/aspnet:9.0 AS base
+COPY bin/Release/net9.0/publish/ app/
+WORKDIR /app
+
+FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build
+WORKDIR /src
+RUN dotnet dev-certs https -v -ep openiddict.pfx -p 7a449039-2de2-4a67-9a5b-d8efa3c10994
+
+FROM base AS final
+WORKDIR /app
+COPY --from=build /src .
+
+ENTRYPOINT ["dotnet", "Layered.BookStore.Web.dll"]

@@ -4,5 +4,5 @@ namespace Single.BookStore.Pages;
 
 public class IndexModel : AbpPageModel
 {
-    
+
 }
