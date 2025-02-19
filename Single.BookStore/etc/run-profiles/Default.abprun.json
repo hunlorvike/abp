@@ -1,0 +1,12 @@
+﻿{
+  "applications": {
+    "Single.BookStore": {
+      "type": "dotnet-project",
+      "launchUrl": "https://localhost:44358",
+      "path": "../../Single.BookStore/Single.BookStore.csproj",
+      "execution": {
+        "order": 0
+      }
+    }
+  }
+}
